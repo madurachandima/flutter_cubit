@@ -11,18 +11,18 @@ class MovieMapper {
             ? []
             : movie.results!
                 .map((e) => MovieDataEntity(
-                      adult: e.adult,
-                      backdropPath: e.backdropPath,
-                      overview: e.overview,
-                      popularity: e.popularity,
-                      posterPath: e.posterPath,
-                      genreIds: e.genreIds,
-                      id: e.id,
-                      originalLanguage: e.originalLanguage,
-                      originalTitle: e.originalTitle,
-                      title: e.title,
-                      voteAverage: e.voteAverage,
-                    ))
+                    adult: e.adult,
+                    backdropPath: e.backdropPath,
+                    overview: e.overview,
+                    popularity: e.popularity,
+                    posterPath: e.posterPath,
+                    genreIds: e.genreIds,
+                    id: e.id,
+                    originalLanguage: e.originalLanguage,
+                    originalTitle: e.originalTitle,
+                    title: e.title,
+                    voteAverage: e.voteAverage,
+                    releaseDate: e.releaseDate))
                 .toList());
   }
 }

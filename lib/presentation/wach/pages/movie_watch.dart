@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:movie_app_cubit/common/widgets/appbar/app_bar.dart';
 import 'package:movie_app_cubit/domain/movie/entities/movie.dart';
 import 'package:movie_app_cubit/presentation/wach/widgets/vdeo_player.dart';
+import 'package:movie_app_cubit/presentation/wach/widgets/vide_vote_avg.dart';
+import 'package:movie_app_cubit/presentation/wach/widgets/video_overview.dart';
+import 'package:movie_app_cubit/presentation/wach/widgets/video_release_date.dart';
+import 'package:movie_app_cubit/presentation/wach/widgets/video_title.dart';
 
 class MovieWatchPage extends StatelessWidget {
   final MovieDataEntity movieDataEntity;
@@ -11,16 +15,56 @@ class MovieWatchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BasicAppbar(
-        hideBack: false,
-      ),
-      body: movieDataEntity.id == null
-          ? const Center(
-              child: Text("Movie id not found!"),
-            )
-          : VideoPlayer(
-              id: movieDataEntity.id!,
-            ),
-    );
+        appBar: const BasicAppbar(
+          hideBack: false,
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              movieDataEntity.id == null
+                  ? const Center(
+                      child: Text("Movie id not found!"),
+                    )
+                  : VideoPlayer(
+                      id: movieDataEntity.id!,
+                    ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    VideoTitle(title: movieDataEntity.title ?? "-"),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        if (movieDataEntity.releaseDate != null)
+                          VideoReleaseDate(
+                              releaseDate: movieDataEntity.releaseDate!),
+                        if (movieDataEntity.voteAverage != null)
+                          VideVoteAvg(
+                            voteAvg: movieDataEntity.voteAverage!,
+                          )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    if (movieDataEntity.overview != null)
+                      VideoOverview(
+                        overview: movieDataEntity.overview!,
+                      )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ));
   }
 }
