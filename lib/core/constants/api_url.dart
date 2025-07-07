@@ -20,6 +20,9 @@ class ApiUrl {
 
   static const getMovieTrailerById = '$baseURL/$apiV/movie/{movie_id}/videos';
 
+  static const getRecommendedMoviesById =
+      '$baseURL/$apiV/movie/{movie_id}/recommendations';
+
   // TV
   static const trendingTvs = '$baseURL/$apiV/trending/tv/day?language=en-US';
 

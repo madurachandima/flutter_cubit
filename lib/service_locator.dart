@@ -13,6 +13,7 @@ import 'package:movie_app_cubit/domain/auth/usecases/signup.dart';
 import 'package:movie_app_cubit/domain/movie/repositories/movie_repository.dart';
 import 'package:movie_app_cubit/domain/movie/usecases/get_movie_trailer_by_id.dart';
 import 'package:movie_app_cubit/domain/movie/usecases/get_now_playing_movies.dart';
+import 'package:movie_app_cubit/domain/movie/usecases/get_recommended_movie_by_id.dart';
 import 'package:movie_app_cubit/domain/movie/usecases/get_trending_movies.dart';
 import 'package:movie_app_cubit/domain/tv/repositories/tv_repository.dart';
 import 'package:movie_app_cubit/domain/tv/usecases/get_popular_tvs_hows.dart';
@@ -42,4 +43,6 @@ void setupServiceLocator() {
   sl.registerSingleton<GetPopularTvShowsUseCase>(GetPopularTvShowsUseCase());
   sl.registerSingleton<GetMovieTrailerByIdUseCase>(
       GetMovieTrailerByIdUseCase());
+  sl.registerSingleton<GetRecommendedMovieByIdUseCase>(
+      GetRecommendedMovieByIdUseCase());
 }

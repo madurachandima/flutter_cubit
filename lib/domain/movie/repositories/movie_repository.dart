@@ -7,5 +7,6 @@ abstract class MovieRepository{
 
   Future<Result> getMovieTrailerById(int id);
 
+  Future<Result> getRecommendedMoviesById(int id);
 
 }

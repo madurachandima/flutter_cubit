@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app_cubit/common/widgets/appbar/app_bar.dart';
 import 'package:movie_app_cubit/domain/movie/entities/movie.dart';
+import 'package:movie_app_cubit/presentation/wach/widgets/recommended_movies.dart';
 import 'package:movie_app_cubit/presentation/wach/widgets/vdeo_player.dart';
 import 'package:movie_app_cubit/presentation/wach/widgets/vide_vote_avg.dart';
 import 'package:movie_app_cubit/presentation/wach/widgets/video_overview.dart';
@@ -62,6 +63,17 @@ class MovieWatchPage extends StatelessWidget {
                       )
                   ],
                 ),
+              ),
+              if (movieDataEntity.id != null) ...{
+                const SizedBox(
+                  height: 16,
+                ),
+                RecommendedMovies(
+                  movieId: movieDataEntity.id!,
+                )
+              },
+              const SizedBox(
+                height: 16,
               )
             ],
           ),

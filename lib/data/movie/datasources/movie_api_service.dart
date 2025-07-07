@@ -12,6 +12,8 @@ abstract class MovieService {
   Future<Result> nowPlayingMovies();
 
   Future<Result> getMovieTrailerById(int id);
+
+  Future<Result> getRecommendedMoviesById(int id);
 }
 
 class MovieApiServiceImpl extends MovieService {
@@ -63,6 +65,23 @@ class MovieApiServiceImpl extends MovieService {
         message: e.message,
         code: e.response?.statusCode,
       ));
+    }
+  }
+
+  @override
+  Future<Result> getRecommendedMoviesById(int id) async{
+    try {
+      var response = await sl<DioClient>().get(
+        ApiUrl.getRecommendedMoviesById.replaceAll("{movie_id}", id.toString()),
+      );
+      return Result(result: response.data);
+    } on DioException catch (e) {
+      Log.e(e.toString());
+      return Result(
+          exception: NetException(
+            message: e.message,
+            code: e.response?.statusCode,
+          ));
     }
   }
 }
