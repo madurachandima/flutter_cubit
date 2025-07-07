@@ -1,15 +1,9 @@
-import 'package:fan_carousel_image_slider/fan_carousel_image_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_cubit/common/helper/applogger/app_logger.dart';
 import 'package:movie_app_cubit/common/widgets/movie/movie_card.dart';
-import 'package:movie_app_cubit/core/constants/api_url.dart';
-import 'package:movie_app_cubit/presentation/home/bloc/now_playing_cubit.dart';
-import 'package:movie_app_cubit/presentation/home/bloc/now_playing_state.dart';
-import 'package:movie_app_cubit/presentation/home/bloc/treinding_state.dart';
-import 'package:movie_app_cubit/presentation/home/bloc/trending_cubit.dart';
-import 'package:movie_app_cubit/presentation/wach/bloc/recommended_movie_cubit.dart';
-import 'package:movie_app_cubit/presentation/wach/bloc/recommended_movie_state.dart';
+import 'package:movie_app_cubit/presentation/watch/bloc/recommended_movie_cubit.dart';
+import 'package:movie_app_cubit/presentation/watch/bloc/recommended_movie_state.dart';
 
 class RecommendedMovies extends StatelessWidget {
   final int movieId;

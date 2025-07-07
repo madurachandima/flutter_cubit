@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_cubit/domain/movie/entities/movie_trailer.dart';
 import 'package:movie_app_cubit/domain/movie/usecases/get_movie_trailer_by_id.dart';
-import 'package:movie_app_cubit/presentation/wach/bloc/trailer_state.dart';
+import 'package:movie_app_cubit/presentation/watch/bloc/trailer_state.dart';
 import 'package:movie_app_cubit/service_locator.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 

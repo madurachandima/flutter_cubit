@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_app_cubit/common/helper/navigation/app_navigation.dart';
 import 'package:movie_app_cubit/core/config/theme/app_colors.dart';
 import 'package:movie_app_cubit/domain/movie/entities/movie.dart';
-import 'package:movie_app_cubit/presentation/wach/pages/movie_watch.dart';
+import 'package:movie_app_cubit/presentation/watch/pages/movie_watch.dart';
 
 class MovieCard extends StatelessWidget {
   final MovieDataEntity movieDataEntity;

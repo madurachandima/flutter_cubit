@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movie_app_cubit/domain/movie/entities/movie.dart';
 import 'package:movie_app_cubit/domain/movie/usecases/get_recommended_movie_by_id.dart';
-import 'package:movie_app_cubit/presentation/wach/bloc/recommended_movie_state.dart';
+import 'package:movie_app_cubit/presentation/watch/bloc/recommended_movie_state.dart';
 import 'package:movie_app_cubit/service_locator.dart';
 
 class RecommendedMovieCubit extends Cubit<RecommendedMovieState> {

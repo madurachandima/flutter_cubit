@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app_cubit/common/widgets/appbar/app_bar.dart';
 import 'package:movie_app_cubit/domain/movie/entities/movie.dart';
-import 'package:movie_app_cubit/presentation/wach/widgets/recommended_movies.dart';
-import 'package:movie_app_cubit/presentation/wach/widgets/vdeo_player.dart';
-import 'package:movie_app_cubit/presentation/wach/widgets/vide_vote_avg.dart';
-import 'package:movie_app_cubit/presentation/wach/widgets/video_overview.dart';
-import 'package:movie_app_cubit/presentation/wach/widgets/video_release_date.dart';
-import 'package:movie_app_cubit/presentation/wach/widgets/video_title.dart';
+import 'package:movie_app_cubit/presentation/watch/widgets/recommended_movies.dart';
+import 'package:movie_app_cubit/presentation/watch/widgets/vdeo_player.dart';
+import 'package:movie_app_cubit/presentation/watch/widgets/vide_vote_avg.dart';
+import 'package:movie_app_cubit/presentation/watch/widgets/video_overview.dart';
+import 'package:movie_app_cubit/presentation/watch/widgets/video_release_date.dart';
+import 'package:movie_app_cubit/presentation/watch/widgets/video_title.dart';
 
 class MovieWatchPage extends StatelessWidget {
   final MovieDataEntity movieDataEntity;
