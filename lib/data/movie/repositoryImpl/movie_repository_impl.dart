@@ -56,9 +56,24 @@ class MovieRepositoryImpl extends MovieRepository {
   }
 
   @override
-  Future<Result> getRecommendedMoviesById(int id) async{
+  Future<Result> getRecommendedMoviesById(int id) async {
     try {
       Result result = await sl<MovieService>().getRecommendedMoviesById(id);
+      if (result.exception != null) {
+        return result;
+      }
+      result.result = MovieMapper.toEntity(MovieModel.fromJson(result.result));
+      return result;
+    } catch (e) {
+      Log.e(e.toString());
+      rethrow;
+    }
+  }
+
+  @override
+  Future<Result> getSimilarMoviesById(int id) async {
+    try {
+      Result result = await sl<MovieService>().getSimilarMoviesById(id);
       if (result.exception != null) {
         return result;
       }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app_cubit/common/widgets/appbar/app_bar.dart';
 import 'package:movie_app_cubit/domain/movie/entities/movie.dart';
+import 'package:movie_app_cubit/presentation/home/widgets/category_text.dart';
 import 'package:movie_app_cubit/presentation/watch/widgets/recommended_movies.dart';
+import 'package:movie_app_cubit/presentation/watch/widgets/similar_movies.dart';
 import 'package:movie_app_cubit/presentation/watch/widgets/vdeo_player.dart';
 import 'package:movie_app_cubit/presentation/watch/widgets/vide_vote_avg.dart';
 import 'package:movie_app_cubit/presentation/watch/widgets/video_overview.dart';
@@ -66,9 +68,25 @@ class MovieWatchPage extends StatelessWidget {
               ),
               if (movieDataEntity.id != null) ...{
                 const SizedBox(
-                  height: 16,
+                  height: 20,
                 ),
+                const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: CategoryText(
+                      title: "Recommended Movies",
+                    )),
                 RecommendedMovies(
+                  movieId: movieDataEntity.id!,
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: CategoryText(
+                      title: "Similar Movies",
+                    )),
+                SimilarMovies(
                   movieId: movieDataEntity.id!,
                 )
               },
