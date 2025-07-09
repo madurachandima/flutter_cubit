@@ -1,10 +1,11 @@
 import 'package:fan_carousel_image_slider/fan_carousel_image_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app_cubit/core/constants/api_url.dart';
+import 'package:movie_app_cubit/common/bloc/generic_data_cubit.dart';
+import 'package:movie_app_cubit/common/bloc/generic_data_state.dart';
 import 'package:movie_app_cubit/domain/movie/entities/movie.dart';
-import 'package:movie_app_cubit/presentation/home/bloc/treinding_state.dart';
-import 'package:movie_app_cubit/presentation/home/bloc/trending_cubit.dart';
+import 'package:movie_app_cubit/domain/movie/usecases/get_trending_movies.dart';
+import 'package:movie_app_cubit/service_locator.dart';
 
 class TrendingMovies extends StatelessWidget {
   const TrendingMovies({super.key});
@@ -12,16 +13,18 @@ class TrendingMovies extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TrendingCubit()..getTrendingMovies(),
-      child:
-          BlocBuilder<TrendingCubit, TrendingState>(builder: (context, state) {
-        if (state is TrendingMoviesLoading) {
+      create: (context) => GenericDataCubit()
+        ..getData<List<MovieDataEntity>>(sl<GetTrendingMoviesUseCase>()),
+      child: BlocBuilder<GenericDataCubit, GenericDataState>(
+          builder: (context, state) {
+        if (state is DataLoading) {
           return const CircularProgressIndicator();
         }
 
-        if (state is TrendingMoviesLoaded) {
+        if (state is DataLoaded) {
+          List<MovieDataEntity> movies = state.data;
           return FanCarouselImageSlider.sliderType2(
-            imagesLink: state.movies
+            imagesLink: movies
                 .map(
                   (MovieDataEntity e) => e.providePosterPath(),
                 )
@@ -31,11 +34,10 @@ class TrendingMovies extends StatelessWidget {
             sliderHeight: 400,
             imageFitMode: BoxFit.fill,
             isClickable: true,
-
           );
         }
 
-        if (state is TrendingMoviesError) {
+        if (state is DataError) {
           return Text(state.errorMessage);
         }
         return Container();
