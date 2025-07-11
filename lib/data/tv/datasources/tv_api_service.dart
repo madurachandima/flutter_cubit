@@ -9,6 +9,12 @@ import '../../../core/network/net_result.dart';
 
 abstract class TvService {
   Future<Result> getPopularTv();
+
+  Future<Result> getTvTrailerById(int id);
+
+  Future<Result> getRecommendedTvSeriesById(int id);
+
+  Future<Result> getSimilarTvSeriesById(int id);
 }
 
 class TvApiServiceImpl extends TvService {
@@ -26,6 +32,57 @@ class TvApiServiceImpl extends TvService {
         message: e.message,
         code: e.response?.statusCode,
       ));
+    }
+  }
+
+  @override
+  Future<Result> getRecommendedTvSeriesById(int id) async{
+    try {
+      var response = await sl<DioClient>().get(
+        ApiUrl.getRecommendedTvsById.replaceAll("{tv_id}", id.toString()),
+      );
+      return Result(result: response.data);
+    } on DioException catch (e) {
+      Log.e(e.toString());
+      return Result(
+          exception: NetException(
+            message: e.message,
+            code: e.response?.statusCode,
+          ));
+    }
+  }
+
+  @override
+  Future<Result> getSimilarTvSeriesById(int id) async{
+    try {
+      var response = await sl<DioClient>().get(
+        ApiUrl.getSimilarTvsById.replaceAll("{tv_id}", id.toString()),
+      );
+      return Result(result: response.data);
+    } on DioException catch (e) {
+      Log.e(e.toString());
+      return Result(
+          exception: NetException(
+            message: e.message,
+            code: e.response?.statusCode,
+          ));
+    }
+  }
+
+  @override
+  Future<Result> getTvTrailerById(int id)async {
+    try {
+      var response = await sl<DioClient>().get(
+        ApiUrl.getTvTrailerById.replaceAll("{tv_id}", id.toString()),
+      );
+      return Result(result: response.data);
+    } on DioException catch (e) {
+      Log.e(e.toString());
+      return Result(
+          exception: NetException(
+            message: e.message,
+            code: e.response?.statusCode,
+          ));
     }
   }
 }

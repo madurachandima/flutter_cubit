@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movie_app_cubit/core/usecase/usecase.dart';
 import 'package:movie_app_cubit/presentation/watch/bloc/trailer_cubit.dart';
 import 'package:movie_app_cubit/presentation/watch/bloc/trailer_state.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class VideoPlayer extends StatelessWidget {
+class VideoPlayer<T>extends StatelessWidget {
   final int id;
+  final UseCase useCase;
 
-  const VideoPlayer({super.key, required this.id});
+  const VideoPlayer({super.key, required this.id, required this.useCase});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => TrailerCubit()..getMovieTrailerById(id),
+      create: (context) => TrailerCubit()..getTrailerById<T>(useCase,id: id),
       child: BlocBuilder<TrailerCubit, TrailerState>(
         builder: (context, state) {
           if (state is TrailerLoading) {

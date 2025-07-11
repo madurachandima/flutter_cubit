@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:movie_app_cubit/common/helper/navigation/app_navigation.dart';
 import 'package:movie_app_cubit/core/config/theme/app_colors.dart';
 import 'package:movie_app_cubit/domain/tv/entity/tv.dart';
+import 'package:movie_app_cubit/presentation/watch/pages/tv_watch.dart';
 
 class TvCard extends StatelessWidget {
   final TvDataEntity tvDataEntity;
@@ -11,7 +13,7 @@ class TvCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        //AppNavigator.push(context, MovieWatchPage(movieEntity: movieEntity,));
+        AppNavigator.push(context, TvWatchPage(tvDataEntity: tvDataEntity,));
       },
       child: Container(
         width: 180,

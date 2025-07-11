@@ -1,35 +1,31 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:movie_app_cubit/domain/movie/entities/movie_trailer.dart';
-import 'package:movie_app_cubit/domain/movie/usecases/get_movie_trailer_by_id.dart';
+import 'package:movie_app_cubit/core/usecase/usecase.dart';
 import 'package:movie_app_cubit/presentation/watch/bloc/trailer_state.dart';
-import 'package:movie_app_cubit/service_locator.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class TrailerCubit extends Cubit<TrailerState> {
   TrailerCubit() : super(TrailerLoading());
 
-  void getMovieTrailerById(int movieId) async {
-    var result = await sl<GetMovieTrailerByIdUseCase>().call(params: movieId);
+  void getTrailerById<T>(UseCase useCase, {required int id}) async {
+    var result = await useCase.call(params: id);
     if (result.exception != null) {
       emit(TrailerError(errorMessage: "Something went wrong"));
     } else {
-      MovieTrailerEntity trailerEntity = result.result;
+      var trailers = result.result.results ?? [];
+      var trailer = trailers.first;
 
-      List<MovieTrailerDataEntity> movieTrailers = trailerEntity.results ?? [];
-      MovieTrailerDataEntity movieTrailer = movieTrailers.first;
-      if (movieTrailer.key == null) {
+      if (trailer.key == null) {
         emit(TrailerError(errorMessage: "Something went wrong"));
       } else {
         YoutubePlayerController controller = YoutubePlayerController(
-          initialVideoId: movieTrailer.key!,
+          initialVideoId: trailer.key! as String,
           flags: const YoutubePlayerFlags(
             autoPlay: false,
             mute: false,
           ),
         );
 
-        emit(TrailerLoaded(
-            controller: controller, movieTrailers: movieTrailers));
+        emit(TrailerLoaded(controller: controller, trailers: trailers));
       }
     }
   }

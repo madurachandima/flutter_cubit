@@ -23,15 +23,22 @@ class ApiUrl {
   static const getRecommendedMoviesById =
       '$baseURL/$apiV/movie/{movie_id}/recommendations';
 
-  static const getSimilarMoviesById =
-      '$baseURL/$apiV/movie/{movie_id}/similar';
+  static const getSimilarMoviesById = '$baseURL/$apiV/movie/{movie_id}/similar';
 
   // TV
   static const trendingTvs = '$baseURL/$apiV/trending/tv/day?language=en-US';
 
-  static const movie = '${apiV}movie/';
-  static const tv = '${apiV}tv/';
+  static const getTvTrailerById = '$baseURL/$apiV/tv/{tv_id}/videos';
+
+  static const getRecommendedTvsById =
+      '$baseURL/$apiV/tv/{tv_id}/recommendations';
+
+  static const getSimilarTvsById = '$baseURL/$apiV/tv/{tv_id}/similar';
+
+
+
+
   static const search = '${apiV}search/';
 
-  static const trailerBase = 'https://www.youtube.com/watch?v=';
+
 }

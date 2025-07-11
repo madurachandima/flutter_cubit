@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app_cubit/common/widgets/appbar/app_bar.dart';
-import 'package:movie_app_cubit/domain/movie/entities/movie.dart';
-import 'package:movie_app_cubit/domain/movie/entities/movie_trailer.dart';
-import 'package:movie_app_cubit/domain/movie/usecases/get_movie_trailer_by_id.dart';
+import 'package:movie_app_cubit/domain/tv/entity/tv.dart';
+import 'package:movie_app_cubit/domain/tv/entity/tv_trailer.dart';
+import 'package:movie_app_cubit/domain/tv/usecases/get_tv_trailer_by_id.dart';
 import 'package:movie_app_cubit/presentation/home/widgets/category_text.dart';
-import 'package:movie_app_cubit/presentation/watch/widgets/recommended_movies.dart';
-import 'package:movie_app_cubit/presentation/watch/widgets/similar_movies.dart';
+import 'package:movie_app_cubit/presentation/watch/widgets/recommended_tv_series.dart';
+import 'package:movie_app_cubit/presentation/watch/widgets/similar_tv_series.dart';
 import 'package:movie_app_cubit/presentation/watch/widgets/vdeo_player.dart';
 import 'package:movie_app_cubit/presentation/watch/widgets/vide_vote_avg.dart';
 import 'package:movie_app_cubit/presentation/watch/widgets/video_overview.dart';
@@ -13,10 +13,10 @@ import 'package:movie_app_cubit/presentation/watch/widgets/video_release_date.da
 import 'package:movie_app_cubit/presentation/watch/widgets/video_title.dart';
 import 'package:movie_app_cubit/service_locator.dart';
 
-class MovieWatchPage extends StatelessWidget {
-  final MovieDataEntity movieDataEntity;
+class TvWatchPage extends StatelessWidget {
+  final TvDataEntity tvDataEntity;
 
-  const MovieWatchPage({super.key, required this.movieDataEntity});
+  const TvWatchPage({super.key, required this.tvDataEntity});
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +28,13 @@ class MovieWatchPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              movieDataEntity.id == null
+              tvDataEntity.id == null
                   ? const Center(
                       child: Text("Movie id not found!"),
                     )
-                  : VideoPlayer<List<MovieTrailerDataEntity>>(
-                      id: movieDataEntity.id!,
-                      useCase: sl<GetMovieTrailerByIdUseCase>(),
+                  : VideoPlayer<List<TvTrailerDataEntity>>(
+                      id: tvDataEntity.id!,
+                      useCase: sl<GetTvTrailerByIdUseCase>(),
                     ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -44,43 +44,43 @@ class MovieWatchPage extends StatelessWidget {
                     const SizedBox(
                       height: 16,
                     ),
-                    VideoTitle(title: movieDataEntity.title ?? "-"),
+                    VideoTitle(title: tvDataEntity.name ?? "-"),
                     const SizedBox(
                       height: 16,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        if (movieDataEntity.releaseDate != null)
+                        if (tvDataEntity.firstAirDate != null)
                           VideoReleaseDate(
-                              releaseDate: movieDataEntity.releaseDate!),
-                        if (movieDataEntity.voteAverage != null)
+                              releaseDate: tvDataEntity.firstAirDate!),
+                        if (tvDataEntity.voteAverage != null)
                           VideVoteAvg(
-                            voteAvg: movieDataEntity.voteAverage!,
+                            voteAvg: tvDataEntity.voteAverage!,
                           )
                       ],
                     ),
                     const SizedBox(
                       height: 16,
                     ),
-                    if (movieDataEntity.overview != null)
+                    if (tvDataEntity.overview != null)
                       VideoOverview(
-                        overview: movieDataEntity.overview!,
+                        overview: tvDataEntity.overview!,
                       )
                   ],
                 ),
               ),
-              if (movieDataEntity.id != null) ...{
+              if (tvDataEntity.id != null) ...{
                 const SizedBox(
                   height: 20,
                 ),
                 const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     child: CategoryText(
-                      title: "Recommended Movies",
+                      title: "Recommended Tv Series",
                     )),
-                RecommendedMovies(
-                  movieId: movieDataEntity.id!,
+                RecommendedTvSeries(
+                  tvId: tvDataEntity.id!,
                 ),
                 SizedBox(
                   height: 20,
@@ -88,10 +88,10 @@ class MovieWatchPage extends StatelessWidget {
                 const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16),
                     child: CategoryText(
-                      title: "Similar Movies",
+                      title: "Similar Tv Series",
                     )),
-                SimilarMovies(
-                  movieId: movieDataEntity.id!,
+                SimilarTvSeries(
+                  tvId: tvDataEntity.id!,
                 )
               },
               const SizedBox(

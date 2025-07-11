@@ -76,7 +76,7 @@ class Tv {
         popularity: json["popularity"]?.toDouble(),
         firstAirDate: json["first_air_date"] == null
             ? null
-            : DateTime.parse(json["first_air_date"]),
+            : DateTime.tryParse(json["first_air_date"]),
         voteAverage: json["vote_average"]?.toDouble(),
         voteCount: json["vote_count"],
         originCountry: json["origin_country"] == null
