@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app_cubit/common/widgets/appbar/app_bar.dart';
+import 'package:movie_app_cubit/core/entity/trailer_entity.dart';
 import 'package:movie_app_cubit/domain/tv/entity/tv.dart';
-import 'package:movie_app_cubit/domain/tv/entity/tv_trailer.dart';
 import 'package:movie_app_cubit/domain/tv/usecases/get_tv_trailer_by_id.dart';
 import 'package:movie_app_cubit/presentation/home/widgets/category_text.dart';
 import 'package:movie_app_cubit/presentation/watch/widgets/recommended_tv_series.dart';
@@ -30,9 +30,9 @@ class TvWatchPage extends StatelessWidget {
             children: [
               tvDataEntity.id == null
                   ? const Center(
-                      child: Text("Movie id not found!"),
+                      child: Text("Tv id not found!"),
                     )
-                  : VideoPlayer<List<TvTrailerDataEntity>>(
+                  : VideoPlayer<List<TrailerDataEntity>>(
                       id: tvDataEntity.id!,
                       useCase: sl<GetTvTrailerByIdUseCase>(),
                     ),

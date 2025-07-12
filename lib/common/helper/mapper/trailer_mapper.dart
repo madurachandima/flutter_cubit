@@ -1,14 +1,14 @@
-import 'package:movie_app_cubit/data/tv/models/tv/tv_trailer_model.dart';
-import 'package:movie_app_cubit/domain/tv/entity/tv_trailer.dart';
+import 'package:movie_app_cubit/core/entity/trailer_entity.dart';
+import 'package:movie_app_cubit/core/model/trailer_model.dart';
 
-class TvTrailerMapper {
-  static TvTrailerEntity toEntity(TvTrailerModel tvTrailer) {
-    return TvTrailerEntity(
-        id: tvTrailer.id,
-        results: tvTrailer.results == null
+class TrailerMapper {
+  static TrailerEntity toEntity(TrailerModel trailer) {
+    return TrailerEntity(
+        id: trailer.id,
+        results: trailer.results == null
             ? []
-            : tvTrailer.results!
-                .map((e) => TvTrailerDataEntity(
+            : trailer.results!
+                .map((e) => TrailerDataEntity(
                       iso6391: e.iso6391,
                       iso31661: e.iso31661,
                       name: e.name,

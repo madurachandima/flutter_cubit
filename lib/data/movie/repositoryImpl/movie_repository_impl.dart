@@ -1,6 +1,7 @@
 import 'package:movie_app_cubit/common/helper/applogger/app_logger.dart';
-import 'package:movie_app_cubit/common/helper/moviemapper/MovieMapper.dart';
-import 'package:movie_app_cubit/common/helper/moviemapper/MovieTrailerMapper.dart';
+import 'package:movie_app_cubit/common/helper/mapper/moviemapper/MovieMapper.dart';
+import 'package:movie_app_cubit/common/helper/mapper/trailer_mapper.dart';
+import 'package:movie_app_cubit/core/model/trailer_model.dart';
 import 'package:movie_app_cubit/core/network/net_result.dart';
 import 'package:movie_app_cubit/data/movie/datasources/movie_api_service.dart';
 import 'package:movie_app_cubit/data/movie/models/movie/movie_model.dart';
@@ -46,8 +47,8 @@ class MovieRepositoryImpl extends MovieRepository {
       if (result.exception != null) {
         return result;
       }
-      result.result = MovieTrailerMapper.toEntity(
-          MovieTrailerModel.fromJson(result.result));
+      result.result =
+          TrailerMapper.toEntity(TrailerModel.fromJson(result.result));
       return result;
     } catch (e) {
       Log.e(e.toString());
