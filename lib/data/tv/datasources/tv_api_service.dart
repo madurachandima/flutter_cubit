@@ -15,6 +15,8 @@ abstract class TvService {
   Future<Result> getRecommendedTvSeriesById(int id);
 
   Future<Result> getSimilarTvSeriesById(int id);
+
+  Future<Result> getKeyWordsById(int id);
 }
 
 class TvApiServiceImpl extends TvService {
@@ -36,7 +38,7 @@ class TvApiServiceImpl extends TvService {
   }
 
   @override
-  Future<Result> getRecommendedTvSeriesById(int id) async{
+  Future<Result> getRecommendedTvSeriesById(int id) async {
     try {
       var response = await sl<DioClient>().get(
         ApiUrl.getRecommendedTvsById.replaceAll("{tv_id}", id.toString()),
@@ -46,14 +48,14 @@ class TvApiServiceImpl extends TvService {
       Log.e(e.toString());
       return Result(
           exception: NetException(
-            message: e.message,
-            code: e.response?.statusCode,
-          ));
+        message: e.message,
+        code: e.response?.statusCode,
+      ));
     }
   }
 
   @override
-  Future<Result> getSimilarTvSeriesById(int id) async{
+  Future<Result> getSimilarTvSeriesById(int id) async {
     try {
       var response = await sl<DioClient>().get(
         ApiUrl.getSimilarTvsById.replaceAll("{tv_id}", id.toString()),
@@ -63,14 +65,14 @@ class TvApiServiceImpl extends TvService {
       Log.e(e.toString());
       return Result(
           exception: NetException(
-            message: e.message,
-            code: e.response?.statusCode,
-          ));
+        message: e.message,
+        code: e.response?.statusCode,
+      ));
     }
   }
 
   @override
-  Future<Result> getTvTrailerById(int id)async {
+  Future<Result> getTvTrailerById(int id) async {
     try {
       var response = await sl<DioClient>().get(
         ApiUrl.getTvTrailerById.replaceAll("{tv_id}", id.toString()),
@@ -80,9 +82,26 @@ class TvApiServiceImpl extends TvService {
       Log.e(e.toString());
       return Result(
           exception: NetException(
-            message: e.message,
-            code: e.response?.statusCode,
-          ));
+        message: e.message,
+        code: e.response?.statusCode,
+      ));
+    }
+  }
+
+  @override
+  Future<Result> getKeyWordsById(int id) async {
+    try {
+      var response = await sl<DioClient>().get(
+        ApiUrl.getTvKeyWordById.replaceAll("{tv_id}", id.toString()),
+      );
+      return Result(result: response.data);
+    } on DioException catch (e) {
+      Log.e(e.toString());
+      return Result(
+          exception: NetException(
+        message: e.message,
+        code: e.response?.statusCode,
+      ));
     }
   }
 }

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:movie_app_cubit/common/widgets/appbar/app_bar.dart';
 import 'package:movie_app_cubit/core/entity/trailer_entity.dart';
 import 'package:movie_app_cubit/domain/movie/entities/movie.dart';
+import 'package:movie_app_cubit/domain/movie/usecases/get_movie_keywords.dart';
 import 'package:movie_app_cubit/domain/movie/usecases/get_movie_trailer_by_id.dart';
 import 'package:movie_app_cubit/presentation/home/widgets/category_text.dart';
+import 'package:movie_app_cubit/presentation/watch/widgets/key_words.dart';
 import 'package:movie_app_cubit/presentation/watch/widgets/recommended_movies.dart';
 import 'package:movie_app_cubit/presentation/watch/widgets/similar_movies.dart';
 import 'package:movie_app_cubit/presentation/watch/widgets/vdeo_player.dart';
@@ -45,6 +47,15 @@ class MovieWatchPage extends StatelessWidget {
                       height: 16,
                     ),
                     VideoTitle(title: movieDataEntity.title ?? "-"),
+                    const SizedBox(
+                      height: 16,
+                    ),
+
+                    if (movieDataEntity.id != null)
+                      KeyWords(
+                        id: movieDataEntity.id!,
+                        useCase: sl<GetMovieKeyWordsUseCase>(),
+                      ),
                     const SizedBox(
                       height: 16,
                     ),

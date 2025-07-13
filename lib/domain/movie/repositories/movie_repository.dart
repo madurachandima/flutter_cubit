@@ -1,6 +1,6 @@
 import 'package:movie_app_cubit/core/network/net_result.dart';
 
-abstract class MovieRepository{
+abstract class MovieRepository {
   Future<Result> getTrendingMovies();
 
   Future<Result> nowPlayingMovies();
@@ -11,4 +11,5 @@ abstract class MovieRepository{
 
   Future<Result> getSimilarMoviesById(int id);
 
+  Future<Result> getKeyWordsById(int id);
 }

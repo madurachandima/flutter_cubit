@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:movie_app_cubit/common/widgets/appbar/app_bar.dart';
 import 'package:movie_app_cubit/core/entity/trailer_entity.dart';
 import 'package:movie_app_cubit/domain/tv/entity/tv.dart';
+import 'package:movie_app_cubit/domain/tv/usecases/get_tv_keywords.dart';
 import 'package:movie_app_cubit/domain/tv/usecases/get_tv_trailer_by_id.dart';
 import 'package:movie_app_cubit/presentation/home/widgets/category_text.dart';
+import 'package:movie_app_cubit/presentation/watch/widgets/key_words.dart';
 import 'package:movie_app_cubit/presentation/watch/widgets/recommended_tv_series.dart';
 import 'package:movie_app_cubit/presentation/watch/widgets/similar_tv_series.dart';
 import 'package:movie_app_cubit/presentation/watch/widgets/vdeo_player.dart';
@@ -45,6 +47,14 @@ class TvWatchPage extends StatelessWidget {
                       height: 16,
                     ),
                     VideoTitle(title: tvDataEntity.name ?? "-"),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    if (tvDataEntity.id != null)
+                      KeyWords(
+                        id: tvDataEntity.id!,
+                        useCase: sl<GetTvKeyWordsUseCase>(),
+                      ),
                     const SizedBox(
                       height: 16,
                     ),

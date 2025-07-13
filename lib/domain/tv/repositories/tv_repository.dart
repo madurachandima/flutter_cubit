@@ -8,4 +8,6 @@ abstract class TvRepository {
   Future<Result> getRecommendedTvsById(int id);
 
   Future<Result> getSimilarTvsById(int id);
+
+  Future<Result> getKeyWordsById(int id);
 }
