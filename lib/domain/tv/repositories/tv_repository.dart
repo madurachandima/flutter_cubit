@@ -10,4 +10,6 @@ abstract class TvRepository {
   Future<Result> getSimilarTvsById(int id);
 
   Future<Result> getKeyWordsById(int id);
+
+  Future<Result> searchTv(String query);
 }

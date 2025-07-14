@@ -17,6 +17,8 @@ abstract class TvService {
   Future<Result> getSimilarTvSeriesById(int id);
 
   Future<Result> getKeyWordsById(int id);
+
+  Future<Result> searchTv(String query);
 }
 
 class TvApiServiceImpl extends TvService {
@@ -93,6 +95,24 @@ class TvApiServiceImpl extends TvService {
     try {
       var response = await sl<DioClient>().get(
         ApiUrl.getTvKeyWordById.replaceAll("{tv_id}", id.toString()),
+      );
+      return Result(result: response.data);
+    } on DioException catch (e) {
+      Log.e(e.toString());
+      return Result(
+          exception: NetException(
+        message: e.message,
+        code: e.response?.statusCode,
+      ));
+    }
+  }
+
+  @override
+  Future<Result> searchTv(String query) async {
+    try {
+      var response = await sl<DioClient>().get(
+        ApiUrl.searchTv,
+        queryParameters: {"query": query},
       );
       return Result(result: response.data);
     } on DioException catch (e) {

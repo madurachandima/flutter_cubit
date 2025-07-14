@@ -18,6 +18,8 @@ abstract class MovieService {
   Future<Result> getSimilarMoviesById(int id);
 
   Future<Result> getKeyWordsById(int id);
+
+  Future<Result> searchMovie(String query);
 }
 
 class MovieApiServiceImpl extends MovieService {
@@ -112,6 +114,22 @@ class MovieApiServiceImpl extends MovieService {
       var response = await sl<DioClient>().get(
         ApiUrl.getMovieKeyWordById.replaceAll("{movie_id}", id.toString()),
       );
+      return Result(result: response.data);
+    } on DioException catch (e) {
+      Log.e(e.toString());
+      return Result(
+          exception: NetException(
+        message: e.message,
+        code: e.response?.statusCode,
+      ));
+    }
+  }
+
+  @override
+  Future<Result> searchMovie(String query) async {
+    try {
+      var response = await sl<DioClient>()
+          .get(ApiUrl.searchMovie, queryParameters: {"query": query});
       return Result(result: response.data);
     } on DioException catch (e) {
       Log.e(e.toString());

@@ -27,6 +27,7 @@ class KeyWords extends StatelessWidget {
         if (state is DataLoaded) {
           List<KeyWordDataEntity> keyWords = state.data;
           return Wrap(
+            spacing: 8,
             children:
                 keyWords.map((e) => Chip(label: Text(e.name ?? "-"))).toList(),
           );

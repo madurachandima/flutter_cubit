@@ -6,6 +6,8 @@ class ApiUrl {
   static const APiKey =
       "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZmY4OWJjNDUwMjFmODc2MjEyOGU0MDFhM2ZmOTNlNCIsIm5iZiI6MTYyMDM1OTcwMi4zOTEsInN1YiI6IjYwOTRiYTE2MjdmZjk5MDAzZWVhMWRhNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vvk_6aPchXHfk_Dw27pZJrQ79iCkXxlUCAplsZnMaF0";
 
+  static const emptyImage = 'https://thesonic.org/media/subcategory/2024/04/13/dummy_oQVIZ7U.jpg';
+
   // Auth
   static const signup =
       'https://685e530d7b57aebd2af8f1f9.mockapi.io/api/v1/user';
@@ -27,6 +29,8 @@ class ApiUrl {
 
   static const getMovieKeyWordById = '$baseURL/$apiV/movie/{movie_id}/keywords';
 
+  static const searchMovie = '$baseURL/$apiV/search/movie';
+
   // TV
   static const trendingTvs = '$baseURL/$apiV/trending/tv/day?language=en-US';
 
@@ -39,10 +43,10 @@ class ApiUrl {
 
   static const getTvKeyWordById = '$baseURL/$apiV/tv/{tv_id}/keywords';
 
+  static const searchTv = '$baseURL/$apiV/search/tv';
 
 
 
-  static const search = '${apiV}search/';
 
 
 }

@@ -12,4 +12,6 @@ abstract class MovieRepository {
   Future<Result> getSimilarMoviesById(int id);
 
   Future<Result> getKeyWordsById(int id);
+
+  Future<Result> searchMovie(String query);
 }

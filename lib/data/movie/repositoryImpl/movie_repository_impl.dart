@@ -103,4 +103,19 @@ class MovieRepositoryImpl extends MovieRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<Result> searchMovie(String query) async {
+    try {
+      Result result = await sl<MovieService>().searchMovie(query);
+      if (result.exception != null) {
+        return result;
+      }
+      result.result = MovieMapper.toEntity(MovieModel.fromJson(result.result));
+      return result;
+    } catch (e) {
+      Log.e(e.toString());
+      rethrow;
+    }
+  }
 }

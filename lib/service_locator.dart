@@ -17,12 +17,14 @@ import 'package:movie_app_cubit/domain/movie/usecases/get_now_playing_movies.dar
 import 'package:movie_app_cubit/domain/movie/usecases/get_recommended_movie_by_id.dart';
 import 'package:movie_app_cubit/domain/movie/usecases/get_similar_movie_by_id.dart';
 import 'package:movie_app_cubit/domain/movie/usecases/get_trending_movies.dart';
+import 'package:movie_app_cubit/domain/movie/usecases/search_movie.dart';
 import 'package:movie_app_cubit/domain/tv/repositories/tv_repository.dart';
 import 'package:movie_app_cubit/domain/tv/usecases/get_popular_tv_shows.dart';
 import 'package:movie_app_cubit/domain/tv/usecases/get_recommended_tv_by_id.dart';
 import 'package:movie_app_cubit/domain/tv/usecases/get_similar_tv_by_id.dart';
 import 'package:movie_app_cubit/domain/tv/usecases/get_tv_keywords.dart';
 import 'package:movie_app_cubit/domain/tv/usecases/get_tv_trailer_by_id.dart';
+import 'package:movie_app_cubit/domain/tv/usecases/search_tv.dart';
 
 final sl = GetIt.instance;
 
@@ -54,6 +56,8 @@ void setupServiceLocator() {
       GetRecommendedMovieByIdUseCase());
   sl.registerSingleton<GetSimilarMovieByIdUseCase>(
       GetSimilarMovieByIdUseCase());
+  sl.registerSingleton<GetMovieKeyWordsUseCase>(GetMovieKeyWordsUseCase());
+  sl.registerSingleton<SearchMovieUseCase>(SearchMovieUseCase());
 
   // TV
   sl.registerSingleton<GetPopularTvShowsUseCase>(GetPopularTvShowsUseCase());
@@ -62,6 +66,5 @@ void setupServiceLocator() {
   sl.registerSingleton<GetSimilarTvByIdUseCase>(GetSimilarTvByIdUseCase());
   sl.registerSingleton<GetTvTrailerByIdUseCase>(GetTvTrailerByIdUseCase());
   sl.registerSingleton<GetTvKeyWordsUseCase>(GetTvKeyWordsUseCase());
-  sl.registerSingleton<GetMovieKeyWordsUseCase>(GetMovieKeyWordsUseCase());
-
+  sl.registerSingleton<SearchTvShowsUseCase>(SearchTvShowsUseCase());
 }

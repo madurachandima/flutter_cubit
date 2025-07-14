@@ -48,6 +48,6 @@ class MovieDataEntity {
   });
 
   String providePosterPath() {
-    return "${ApiUrl.imageBaseURL}${posterPath ?? ""}";
+    return "${ApiUrl.imageBaseURL}${posterPath ?? ApiUrl.emptyImage}";
   }
 }

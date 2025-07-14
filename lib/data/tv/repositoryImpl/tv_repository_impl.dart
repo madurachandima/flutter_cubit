@@ -87,4 +87,20 @@ class TvRepositoryImpl extends TvRepository {
       rethrow;
     }
   }
+
+  @override
+  Future<Result> searchTv(String query) async {
+    try {
+      Result result = await sl<TvService>().searchTv(query);
+      if (result.exception != null) {
+        return result;
+      }
+      result.result = TvMapper.toEntity(TvModel.fromJson(result.result));
+
+      return result;
+    } catch (e) {
+      Log.e(e.toString());
+      rethrow;
+    }
+  }
 }
