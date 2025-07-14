@@ -128,7 +128,6 @@ class MovieApiServiceImpl extends MovieService {
   @override
   Future<Result> searchMovie(String query, int? page) async {
     try {
-      Log.i("search movie page --->>> $page");
       var response = await sl<DioClient>().get(ApiUrl.searchMovie,
           queryParameters: {"query": query, 'page': page ?? 1});
       return Result(result: response.data);
