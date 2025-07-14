@@ -78,7 +78,7 @@ class MovieResponse {
         popularity: json["popularity"]?.toDouble(),
         releaseDate: json["release_date"] == null
             ? null
-            : DateTime.parse(json["release_date"]),
+            : DateTime.tryParse(json["release_date"]),
         video: json["video"],
         voteAverage: json["vote_average"]?.toDouble(),
         voteCount: json["vote_count"],

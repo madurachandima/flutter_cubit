@@ -4,9 +4,9 @@ import 'package:movie_app_cubit/domain/movie/repositories/movie_repository.dart'
 import 'package:movie_app_cubit/domain/tv/repositories/tv_repository.dart';
 import 'package:movie_app_cubit/service_locator.dart';
 
-class GetMovieKeyWordsUseCase extends UseCase<Result, dynamic> {
+class GetMovieKeyWordsUseCase extends UseCase<Result, dynamic, dynamic> {
   @override
-  Future<Result> call({params}) async {
+  Future<Result> call({params, page}) async {
     return await sl<MovieRepository>().getKeyWordsById(params);
   }
 }

@@ -19,7 +19,7 @@ abstract class MovieService {
 
   Future<Result> getKeyWordsById(int id);
 
-  Future<Result> searchMovie(String query);
+  Future<Result> searchMovie(String query, int? page);
 }
 
 class MovieApiServiceImpl extends MovieService {
@@ -126,10 +126,11 @@ class MovieApiServiceImpl extends MovieService {
   }
 
   @override
-  Future<Result> searchMovie(String query) async {
+  Future<Result> searchMovie(String query, int? page) async {
     try {
-      var response = await sl<DioClient>()
-          .get(ApiUrl.searchMovie, queryParameters: {"query": query});
+      Log.i("search movie page --->>> $page");
+      var response = await sl<DioClient>().get(ApiUrl.searchMovie,
+          queryParameters: {"query": query, 'page': page ?? 1});
       return Result(result: response.data);
     } on DioException catch (e) {
       Log.e(e.toString());

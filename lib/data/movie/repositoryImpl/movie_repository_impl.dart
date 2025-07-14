@@ -105,9 +105,9 @@ class MovieRepositoryImpl extends MovieRepository {
   }
 
   @override
-  Future<Result> searchMovie(String query) async {
+  Future<Result> searchMovie(String query, int? page) async {
     try {
-      Result result = await sl<MovieService>().searchMovie(query);
+      Result result = await sl<MovieService>().searchMovie(query, page);
       if (result.exception != null) {
         return result;
       }

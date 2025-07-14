@@ -11,7 +11,6 @@ class SearchFields extends StatelessWidget {
     return TextField(
       controller: context.read<SearchCubit>().searchController,
       onChanged: (text) {
-        if (text.isEmpty) return;
         context.read<SearchCubit>().search(
             query: text, type: context.read<SelectableOptionCubit>().state);
       },

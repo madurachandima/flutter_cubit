@@ -7,6 +7,8 @@ class SearchInitialState extends SearchState {}
 
 class SearchLoadingState extends SearchState {}
 
+class SearchPaginationLoadingState extends SearchState {}
+
 class MoviesLoaded extends SearchState {
   final List<MovieDataEntity> movies;
 

@@ -4,9 +4,9 @@ import 'package:movie_app_cubit/data/auth/models/auth/signup_req_params.dart';
 import 'package:movie_app_cubit/domain/auth/repositories/auth_repository.dart';
 import 'package:movie_app_cubit/service_locator.dart';
 
-class SignUpUseCase extends UseCase<Result, SignUpRequestParams> {
+class SignUpUseCase extends UseCase<Result, SignUpRequestParams, dynamic> {
   @override
-  Future<Result> call({SignUpRequestParams? params}) async {
+  Future<Result> call({SignUpRequestParams? params, page}) async {
     if (params == null) {
       throw Exception("User name and password required");
     }

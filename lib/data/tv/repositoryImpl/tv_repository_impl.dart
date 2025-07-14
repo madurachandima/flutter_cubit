@@ -89,9 +89,9 @@ class TvRepositoryImpl extends TvRepository {
   }
 
   @override
-  Future<Result> searchTv(String query) async {
+  Future<Result> searchTv(String query,int? page) async {
     try {
-      Result result = await sl<TvService>().searchTv(query);
+      Result result = await sl<TvService>().searchTv(query,page);
       if (result.exception != null) {
         return result;
       }

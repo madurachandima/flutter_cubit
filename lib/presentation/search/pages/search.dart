@@ -33,7 +33,9 @@ class Search extends StatelessWidget {
               SizedBox(
                 height: 16,
               ),
-              SearchContent()
+              SearchContent(
+                key: ValueKey("search_content"),
+              )
             ],
           ),
         ),

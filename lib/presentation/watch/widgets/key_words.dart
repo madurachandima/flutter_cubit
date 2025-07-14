@@ -13,9 +13,7 @@ class KeyWords extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return
-
-      BlocProvider(
+    return BlocProvider(
       create: (context) => GenericDataCubit()
         ..getData<List<KeyWordDataEntity>>(useCase, params: id),
       child: BlocBuilder<GenericDataCubit, GenericDataState>(

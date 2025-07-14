@@ -18,7 +18,7 @@ abstract class TvService {
 
   Future<Result> getKeyWordsById(int id);
 
-  Future<Result> searchTv(String query);
+  Future<Result> searchTv(String query, int? page);
 }
 
 class TvApiServiceImpl extends TvService {
@@ -108,11 +108,11 @@ class TvApiServiceImpl extends TvService {
   }
 
   @override
-  Future<Result> searchTv(String query) async {
+  Future<Result> searchTv(String query, int? page) async {
     try {
       var response = await sl<DioClient>().get(
         ApiUrl.searchTv,
-        queryParameters: {"query": query},
+        queryParameters: {"query": query, "page": page ?? 1},
       );
       return Result(result: response.data);
     } on DioException catch (e) {

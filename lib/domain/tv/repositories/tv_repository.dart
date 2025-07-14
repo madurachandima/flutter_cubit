@@ -11,5 +11,5 @@ abstract class TvRepository {
 
   Future<Result> getKeyWordsById(int id);
 
-  Future<Result> searchTv(String query);
+  Future<Result> searchTv(String query, int? page);
 }
